@@ -8,13 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class DailyForecastVeiwHolder(view: View) : RecyclerView.ViewHolder(view){
+class DailyForecastVeiwHolder(
+    view: View,
+    private val tempDisplaySettingManager: TempDisplaySettingManager
+
+)
+    : RecyclerView.ViewHolder(view){
 
     private val tempText: TextView = view.findViewById(R.id.tempText)
     private val descriptionText: TextView = view.findViewById(R.id.descriptionText)
 
     fun bind(dailyForecast: DailyForecast) {
-        tempText.text = String.format("%.2f", dailyForecast.temp)
+        tempText.text = formatTempForDisplay(dailyForecast.temp, tempDisplaySettingManager.getTempDisplaySetting() )
         descriptionText.text = dailyForecast.description
 
     }
@@ -22,6 +27,7 @@ class DailyForecastVeiwHolder(view: View) : RecyclerView.ViewHolder(view){
 }
 
 class DailyForecastAdapter(
+    private val tempDisplaySettingManager: TempDisplaySettingManager,
     private val clickHandler: (DailyForecast) -> Unit
 
 ) : ListAdapter<DailyForecast, DailyForecastVeiwHolder>(DIFF_CONFIG) {
@@ -30,14 +36,14 @@ class DailyForecastAdapter(
     companion object {
         val DIFF_CONFIG = object: DiffUtil.ItemCallback<DailyForecast>(){
             override fun areItemsTheSame(oldItem: DailyForecast, newItem: DailyForecast): Boolean {
-              return oldItem === newItem
+                return oldItem === newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: DailyForecast,
                 newItem: DailyForecast
             ): Boolean {
-               return oldItem ==newItem
+                return oldItem ==newItem
             }
 
         }
@@ -45,7 +51,7 @@ class DailyForecastAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastVeiwHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
-        return DailyForecastVeiwHolder(itemView)
+        return DailyForecastVeiwHolder(itemView, tempDisplaySettingManager)
     }
 
     override fun onBindViewHolder(holder: DailyForecastVeiwHolder, position: Int) {
