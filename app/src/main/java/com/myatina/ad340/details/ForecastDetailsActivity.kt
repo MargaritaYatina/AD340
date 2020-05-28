@@ -22,7 +22,7 @@ class ForecastDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forecast_details3)
+        setContentView(R.layout.activity_forecast_detail)
 
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
