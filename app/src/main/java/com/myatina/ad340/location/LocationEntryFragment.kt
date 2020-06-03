@@ -20,7 +20,7 @@ class LocationEntryFragment : Fragment() {
 
     private lateinit var appNavigator: AppNavigator
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         appNavigator=context as AppNavigator
     }

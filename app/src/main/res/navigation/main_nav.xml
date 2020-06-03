@@ -9,5 +9,33 @@
         android:id="@+id/locationEntryFragment"
         android:name="com.myatina.ad340.location.LocationEntryFragment"
         android:label="fragment_location_entry"
-        tools:layout="@layout/fragment_location_entry" />
+        tools:layout="@layout/fragment_location_entry" >
+        <action
+            android:id="@+id/action_locationEntryFragment_to_currentForecastFragment2"
+            app:destination="@id/currentForecastFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentForecastFragment"
+        android:name="com.myatina.ad340.forecast.CurrentForecastFragment"
+        android:label="fragment_current_forecast"
+        tools:layout="@layout/fragment_current_forecast" >
+        <action
+            android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
+            app:destination="@id/locationEntryFragment" />
+        <action
+            android:id="@+id/action_currentForecastFragment_to_forecastDetailsFragment"
+            app:destination="@id/forecastDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forecastDetailsFragment"
+        android:name="com.myatina.ad340.details.ForecastDetailsFragment"
+        android:label="fragment_forecast_detail"
+        tools:layout="@layout/fragment_forecast_detail" >
+        <argument
+            android:name="temp"
+            app:argType="float" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
 </navigation>
