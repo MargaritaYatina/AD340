@@ -1,6 +1,5 @@
 package com.myatina.ad340.location
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.myatina.ad340.AppNavigator
+import androidx.navigation.fragment.findNavController
 
 import com.myatina.ad340.R
 
@@ -18,12 +17,7 @@ import com.myatina.ad340.R
  */
 class LocationEntryFragment : Fragment() {
 
-    private lateinit var appNavigator: AppNavigator
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        appNavigator=context as AppNavigator
-    }
 
 
     override fun onCreateView(
@@ -44,7 +38,7 @@ class LocationEntryFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.zipcode_entry_error, Toast.LENGTH_SHORT).show()
 
             } else {
-                appNavigator.navigateToCurrentForecast(zipcode)
+               findNavController().navigateUp()
             }
         }
 

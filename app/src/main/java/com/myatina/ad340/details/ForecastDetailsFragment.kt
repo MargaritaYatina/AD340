@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.myatina.ad340.R
 import com.myatina.ad340.TempDisplaySettingManager
 import com.myatina.ad340.formatTempForDisplay
-import kotlinx.android.synthetic.main.fragment_forecast_detail.*
 
 
 class ForecastDetailsFragment : Fragment() {

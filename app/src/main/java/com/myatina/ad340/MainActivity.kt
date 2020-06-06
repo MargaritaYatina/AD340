@@ -5,18 +5,20 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.myatina.ad340.forecast.CurrentForecastFragmentDirections
-import com.myatina.ad340.location.LocationEntryFragmentDirections
 
 
-class MainActivity : AppCompatActivity(),AppNavigator {
 
-    private val forecastRepository = ForecastRepository()
+class MainActivity : AppCompatActivity() {
+
+
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,8 @@ class MainActivity : AppCompatActivity(),AppNavigator {
 
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+        findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.app_name)
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -66,21 +69,6 @@ class MainActivity : AppCompatActivity(),AppNavigator {
     }
 
 
-    override fun navigateToCurrentForecast(zipcode: String) {
-       val action = LocationEntryFragmentDirections.actionLocationEntryFragmentToCurrentForecastFragment2()
-        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
-
-    override fun navigateToLocationEntry() {
-        val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToLocationEntryFragment()
-        findNavController(R.id.nav_host_fragment).navigate(action)
-    }
-
-     override fun navigateToForecastDetails(forecast: DailyForecast) {
-         val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToForecastDetailsFragment(forecast.temp, forecast.description)
-         findNavController(R.id.nav_host_fragment).navigate(action)
-
-     }
 
 
 }
