@@ -7,6 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.myatina.ad340.api.DailyForecast
+import java.text.SimpleDateFormat
+import java.util.*
+
+private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 
 class DailyForecastVeiwHolder(
     view: View,
@@ -17,10 +22,12 @@ class DailyForecastVeiwHolder(
 
     private val tempText: TextView = view.findViewById(R.id.tempText)
     private val descriptionText: TextView = view.findViewById(R.id.descriptionText)
+    private val dateText = view.findViewById<TextView>(R.id.dateText)
 
     fun bind(dailyForecast: DailyForecast) {
-        tempText.text = formatTempForDisplay(dailyForecast.temp, tempDisplaySettingManager.getTempDisplaySetting() )
-        descriptionText.text = dailyForecast.description
+        tempText.text = formatTempForDisplay(dailyForecast.temp.max, tempDisplaySettingManager.getTempDisplaySetting() )
+        descriptionText.text = dailyForecast.weather[0].description
+        dateText.text = DATE_FORMAT.format((Date(dailyForecast.date * 1000)))
 
     }
 
