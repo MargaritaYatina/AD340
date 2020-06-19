@@ -27,7 +27,7 @@ interface OpenWeatherMapService {
     @GET("/data/2.5/onecall")
     fun sevenDayForecast (
         @Query("lat") lat: Float,
-        @Query("long") lon: Float,
+        @Query("lon") lon: Float,
         @Query("exclude") exclude : String,
         @Query("units") units: String,
         @Query("appid") apiKey: String
