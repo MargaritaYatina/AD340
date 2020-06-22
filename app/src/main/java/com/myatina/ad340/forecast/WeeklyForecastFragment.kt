@@ -83,7 +83,7 @@ class WeeklyForecastFragment : Fragment() {
 
         dailyForecastList.layoutManager = LinearLayoutManager(requireContext())
 
-        val dailyForecastAdapter = DailyForecastListAdapter(tempDisplaySettingManager) {
+        val dailyForecastAdapter = DailyForecastAdapter(tempDisplaySettingManager) {
 
             showForecastDetails(it)
 
