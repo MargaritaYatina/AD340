@@ -1,17 +1,11 @@
 package com.myatina.ad340.details
 
 import androidx.lifecycle.LiveData
-
 import androidx.lifecycle.MutableLiveData
-
 import androidx.lifecycle.ViewModel
-
 import androidx.lifecycle.ViewModelProvider
-
 import java.lang.IllegalArgumentException
-
 import java.text.SimpleDateFormat
-
 import java.util.*
 
 
